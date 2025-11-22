@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GROCIFY - Register</title>
+    <link rel="stylesheet" href="/static/FORM.CSS">
+</head>
+<body>
+    <div class="registration-container" style="max-width: 700px; margin: 50px auto;">
+        <h2 style="text-align: center; color: var(--primary-color);">📝 Create Your GROCIFY Account</h2>
+        
+        <p style="text-align:center; color:#dc3545; font-weight: bold;">{% if registration_error %}{{ registration_error }}{% endif %}</p>
+        
+        <form method="POST" action="{{ url_for('render_register') }}">
+            {{ form.hidden_tag() }} 
+            
+            <fieldset>
+                <legend>Account Details</legend>
+                <div class="form-group">{{ form.username.label }}* {{ form.username(class="invalid-field" if form.username.errors else "") }}
+                    {% for error in form.username.errors %}<small class="error">{{ error }}</small>{% endfor %}</div>
+                <div class="form-group">{{ form.password.label }}* {{ form.password(class="invalid-field" if form.password.errors else "") }}
+                    {% for error in form.password.errors %}<small class="error">{{ error }}</small>{% endfor %}</div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Personal Information</legend>
+                <div class="form-group">{{ form.firstName.label }}* {{ form.firstName(class="invalid-field" if form.firstName.errors else "") }}
+                    {% for error in form.firstName.errors %}<small class="error">{{ error }}</small>{% endfor %}</div>
+                <div class="form-group">{{ form.lastName.label }}* {{ form.lastName(class="invalid-field" if form.lastName.errors else "") }}
+                    {% for error in form.lastName.errors %}<small class="error">{{ error }}</small>{% endfor %}</div>
+                <div class="form-group">{{ form.email.label }}* {{ form.email(class="invalid-field" if form.email.errors else "") }}
+                    {% for error in form.email.errors %}<small class="error">{{ error }}</small>{% endfor %}</div>
+                <div class="form-group">{{ form.phone.label }}* {{ form.phone(class="invalid-field" if form.phone.errors else "") }}
+                    {% for error in form.phone.errors %}<small class="error">{{ error }}</small>{% endfor %}</div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Delivery Address</legend>
+                <div class="form-group">{{ form.address.label }}* {{ form.address(class="invalid-field" if form.address.errors else "") }}
+                    {% for error in form.address.errors %}<small class="error">{{ error }}</small>{% endfor %}</div>
+                <div class="form-group">{{ form.landmark.label }}{{ form.landmark }}</div>
+                <div class="form-group">{{ form.pincode.label }}* {{ form.pincode(class="invalid-field" if form.pincode.errors else "") }}
+                    {% for error in form.pincode.errors %}<small class="error">{{ error }}</small>{% endfor %}</div>
+            </fieldset>
+            
+            {{ form.submit(class="btn btn-primary", style="width:100%;") }}
+        </form>
+        <p style="text-align: center; margin-top: 15px;">Already have an account? <a href="/login.html">Login here</a></p>
+    </div>
+</body>
+</html>
